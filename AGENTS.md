@@ -39,7 +39,7 @@ never during it.
 9. **Do not run git commands.** I commit myself.
 
 ## Stack
-- **Backend:** Node.js 20 LTS, NestJS (TypeScript, strict mode), `better-sqlite3` used
+- **Backend:** Node.js 22.21.1 (user-approved override), NestJS (TypeScript, strict mode), `better-sqlite3` used
   directly through a small DatabaseService (no ORM), WAL mode, `class-validator` and
   `class-transformer` for DTOs, `zod` to validate the model's JSON output, `@nestjs/config`,
   `@nestjs/serve-static` to serve the built frontend, `@nestjs/swagger` for `/docs`.
@@ -49,8 +49,8 @@ never during it.
   system fonts, inline SVG).
 - **Tests:** Jest and supertest (backend), Vitest and Testing Library only if time allows.
 - **Lint and format:** ESLint and Prettier.
-- Node 20 is required because the development machine is an old Mac (macOS 12).
-  Do not use features that need Node 22 or later.
+- Node 22.21.1 is approved by the user, replacing the original Node 20 requirement.
+  Keep dependencies compatible with this runtime and the development Mac (macOS 12).
 - If `better-sqlite3` fails to install, stop and tell me; do not switch libraries silently.
 
 ## Visual identity

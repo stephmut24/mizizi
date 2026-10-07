@@ -9,11 +9,13 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "tsc --noEmit && vite build",
-    "lint": "eslint src vite.config.ts && prettier --check src *.json *.js *.ts index.html"
+    "lint": "eslint src vite.config.ts && prettier --check src scripts *.json *.js *.ts index.html",
+    "test:ui": "node scripts/verify-ui.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.9.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.0",

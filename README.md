@@ -4,10 +4,11 @@ Mizizi ("roots" in Swahili) is a local family herbarium for preserving what an
 elder shares about plants during a walk. Use it before and after going outside.
 Traditional knowledge shared by the elder. Not medical advice.
 
-This first milestone contains a NestJS/SQLite API and a React health-check page.
-AI organization, review screens, photo handling, printing and exports are future
-milestones. No model, account, API key or internet connection is needed to run
-this milestone after installation.
+This milestone contains a NestJS/SQLite API and a responsive React notebook:
+People, Walks and Herbarium. Record consent, log walks, write plant cards by hand,
+and search, edit or delete them. No model, account, API key or internet connection
+is needed after installation. AI organization, photo uploads, printing and exports
+are future milestones; the review panel is an isolated development preview only.
 
 ## Requirements and installation
 
@@ -62,6 +63,44 @@ The backend starts even when `frontend/dist` does not exist. In that case `/`
 returns 404 while `/api` and `/docs` remain available. Build the frontend and
 restart the backend to serve the page. Only `frontend/dist` is served as static
 content; database files and photos are not exposed.
+
+## Use the notebook
+
+1. Open **People**, add a name and languages, and record the person's actual
+   agreement. The consent checkbox is unchecked by default. Saving a person
+   without consent is allowed, but creating plants for them is not.
+2. Open **Walks**, choose a person, date and short place label. Duration is optional.
+3. Choose **Add a plant from this walk**, or **New plant** in Herbarium. Enter a
+   local name and what they told you. List fields take one item per line; People
+   languages take comma-separated values. Leave anything not discussed blank.
+4. Plants default to **Private**. Choose **Shareable** only with their permission.
+   Search by local/other name, filter by person, and open a card to edit or delete
+   it. Deletion requires confirmation. Walk counts update after plant changes.
+
+Use **Edit person** to correct their details or withdraw consent. Existing plants
+remain visible and can be deleted; further plant edits are blocked without
+consent. A walk can be recorded before consent, but no plants can be added for
+that person. The server enforces these rules too.
+
+The app uses hash routes (`#/herbarium`, `#/walks`, `#/people`). Records load when
+the notebook opens and update after your own saves. Refresh to see changes made
+from another browser. Unsaved form contents are not persisted across navigation.
+The local server must stay running; offline means no internet is needed, not that
+the phone stores an independent copy when disconnected from the computer.
+
+### Development-only review layout
+
+With the backend running, enable the fictional review fixture:
+
+```sh
+VITE_REVIEW_PREVIEW=true npm run dev:frontend
+```
+
+Add a consenting test person, then open **New plant**. Below the raw notes is a
+clearly labelled preview with editable lines, checkboxes, source quotes, a summary
+and missing-information reminders. Its controls never modify or save a real card.
+The fixture is excluded from production builds, even when the flag is set. No AI
+endpoint is called. The connection point is marked `TODO connect in prompt 04`.
 
 ## Configuration
 
@@ -172,7 +211,13 @@ use the real `data/` database or a running model.
 - `backend/src/elders/`, `walks/`, `plants/`, `followups/`: DTOs, controllers,
   services and Nest modules. Services own business rules.
 - `backend/test/`: isolated SQLite and HTTP tests.
-- `frontend/src/`: the minimal React page and local CSS.
+- `frontend/src/api/`: typed API requests and shared notebook state.
+- `frontend/src/pages/`: People, Walks, Herbarium, plant detail and plant form.
+- `frontend/src/components/`: navigation, fields, notices, delete dialog and the
+  development-only review preview.
+- `frontend/src/styles/main.css`: Stitch-derived tokens and responsive plain CSS.
+- `frontend/scripts/verify-ui.mjs`: optional isolated browser smoke test; see
+  [UI verification](docs/ui-verification.md) for setup, coverage and visual deviations.
 - `AGENTS.md`: contributor constraints; `plan.md`: the overall project plan.
 
 Nest/React runtime packages, their TypeScript types, Jest's TypeScript adapter,
@@ -180,3 +225,7 @@ ts-node, and ESLint's TypeScript adapter are supporting tooling for the agreed
 stack. No ORM or cloud service is used. A scoped npm override upgrades Swagger's
 `js-yaml` dependency to a patched 5.x release; remove it once Swagger itself
 requires the corrected version.
+
+`react-router-dom` is the only new app dependency for the notebook milestone.
+The backend source was not changed. The UI uses local CSS, system fonts and inline
+SVG; nothing from the design exports' CDNs or remote image servers is loaded.

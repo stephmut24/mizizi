@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><title>Mizizi</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-secondary-fixed": "#042111", "tertiary-container": "#407e4f", "primary-fixed": "#ffdbce", "on-secondary": "#ffffff", "on-surface": "#1d1c13", "on-primary-fixed": "#370d00", "surface-container-highest": "#e8e2d4", "tertiary-fixed-dim": "#94d69f", "surface": "#fff9eb", "on-primary-container": "#fff6f3", "primary-fixed-dim": "#ffb59a", "on-primary-fixed-variant": "#7d2d07", "outline": "#89726a", "outline-variant": "#dcc1b7", "surface-variant": "#e8e2d4", "surface-container-lowest": "#ffffff", "secondary": "#486551", "surface-dim": "dfdacc", "surface-bright": "#fff9eb", "surface-tint": "#9c431e", "error": "#ba1a1a", "inverse-surface": "#333027", "secondary-fixed-dim": "#aeceb6", "secondary-container": "#caebd1", "on-primary": "#ffffff", "tertiary-fixed": "#aff2b9", "secondary-fixed": "#caebd1", "on-tertiary-fixed": "#00210b", "primary-container": "#b5562f", "on-error-container": "#93000a", "on-tertiary-container": "#e1ffe2", "on-error": "#ffffff", "inverse-on-surface": "#f6f0e2", "on-surface-variant": "#56423c", "background": "#fff9eb", "on-background": "#1d1c13", "on-secondary-fixed-variant": "#314d3a", "on-tertiary-fixed-variant": "#0f5228", "tertiary": "#266538", "surface-container-high": "#eee8da", "primary": "#953f19", "surface-container-low": "#f9f3e5", "on-secondary-container": "#4e6b57", "on-tertiary": "#ffffff", "inverse-primary": "#ffb59a", "error-container": "#ffdad6", "surface-container": "#f3eddf" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xl": "2rem", "space-md": "1rem", "margin": "1.5rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "space-lg": "1.5rem", "gutter": "1.5rem" }, "fontFamily": { "label-caps": ["Inter"], "citation-italic": ["EB Garamond"], "headline-xl-mobile": ["EB Garamond"], "headline-xl": ["EB Garamond"], "headline-md": ["EB Garamond"], "body-sm": ["Inter"], "body-lg": ["Inter"], "headline-lg": ["EB Garamond"] }, "fontSize": { "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600" }], "citation-italic": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-xl-mobile": ["26px", { "lineHeight": "34px", "fontWeight": "700" }], "headline-xl": ["32px", { "lineHeight": "40px", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "700" }], "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg": ["22px", { "lineHeight": "30px", "fontWeight": "700" }] } } } };</script><style>@layer base { html, body { width: 100%; margin: 0; padding: 0; background-color: #fff9eb; } body { overscroll-behavior-y: none; -webkit-tap-highlight-color: transparent; } .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); } .pt-safe { padding-top: env(safe-area-inset-top, 0px); } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface font-body-lg text-body-lg min-h-full flex flex-col antialiased selection:bg-primary-fixed selection:text-on-primary-fixed"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_2px_rgba(36,64,46,0.06)] pt-safe"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-tertiary text-[22px] select-none">potted_plant</span><span class="font-headline-lg text-headline-lg font-bold tracking-tight text-tertiary select-none">Mizizi</span></div><div class="flex items-center justify-center"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-36 px-margin bg-surface"><div class="flex flex-col w-full space-y-space-lg">
+<!-- 1. Header Section -->
+<section class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-secondary tracking-widest uppercase">Field Journal Ledger</span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-label-caps bg-surface-container-high text-on-surface-variant shadow-sm">
+        Season 2023 · Vol. IV
+      </span>
+</div>
+<div class="flex flex-col gap-1">
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile text-tertiary font-bold tracking-tight">Walks</h1>
+<p class="font-citation-italic text-citation-italic text-secondary italic">
+        Each walk, with who you walked and what you learned.
+      </p>
+</div>
+</section>
+<!-- 2. "Start a walk" card (Stacked tactile form) -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-md">
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">edit_note</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold">Start a walk</h2>
+</div>
+<span class="font-label-caps text-[11px] text-secondary uppercase tracking-wider">Entry #05</span>
+</div>
+<form class="flex flex-col gap-3" onsubmit="event.preventDefault();">
+<!-- Companion / Person -->
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-label-caps text-secondary">With whom</label>
+<div class="relative">
+<select class="w-full h-12 bg-surface-container-low text-on-surface font-body-lg text-body-lg rounded-lg px-3.5 appearance-none focus:outline-none focus:bg-surface-container-lowest transition-colors shadow-sm cursor-pointer">
+<option selected="">Mama Rose</option>
+<option>Baba Joseph</option>
+<option>Bibi Amina</option>
+</select>
+<span class="material-symbols-outlined absolute right-3.5 top-1/2 -translate-y-1/2 text-secondary pointer-events-none text-[20px]">expand_more</span>
+</div>
+</div>
+<!-- Date & Minutes (Two-column layout) -->
+<div class="grid grid-cols-2 gap-3">
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-label-caps text-secondary">Date</label>
+<div class="relative">
+<input class="w-full h-12 bg-surface-container-low text-on-surface font-body-lg text-body-lg rounded-lg pl-3 pr-8 focus:outline-none focus:bg-surface-container-lowest transition-colors shadow-sm" type="text" value="8 Oct 2023"/>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-secondary text-[18px]">calendar_today</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-label-caps text-secondary">Duration</label>
+<div class="relative">
+<input class="w-full h-12 bg-surface-container-low text-on-surface font-body-lg text-body-lg rounded-lg pl-3 pr-8 focus:outline-none focus:bg-surface-container-lowest transition-colors shadow-sm" type="text" value="45 min"/>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-secondary text-[18px]">timer</span>
+</div>
+</div>
+</div>
+<!-- Place Input & Privacy helper -->
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-label-caps text-secondary">Place / Route</label>
+<div class="relative">
+<input class="w-full h-12 bg-surface-container-low text-on-surface font-body-lg text-body-lg rounded-lg px-3.5 focus:outline-none focus:bg-surface-container-lowest transition-colors shadow-sm" type="text" value="garden behind the house"/>
+<span class="material-symbols-outlined absolute right-3.5 top-1/2 -translate-y-1/2 text-secondary text-[18px]">nature_people</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-tertiary">lock</span>
+<span>Just a short label. No GPS coordinates or telemetry stored.</span>
+</p>
+</div>
+<!-- Primary Action CTA -->
+<button class="w-full h-12 mt-1 bg-primary-container text-on-primary font-body-lg text-body-lg font-medium rounded-lg flex items-center justify-center gap-2 shadow-sm active:scale-[0.99] transition-transform" type="button">
+<span class="material-symbols-outlined text-[20px]">check</span>
+<span>Save walk</span>
+</button>
+<!-- Note below action -->
+<div class="flex items-center gap-1.5 pt-1 text-center justify-center">
+<span class="material-symbols-outlined text-[15px] text-tertiary">eco</span>
+<span class="font-citation-italic text-citation-italic text-on-surface-variant">Specimens are affixed to journal folios once the walk is registered.</span>
+</div>
+</form>
+</section>
+<!-- 3. Walk Records Ledger -->
+<section class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-md text-headline-md text-tertiary">Walk records · Archive 2023</h2>
+<span class="font-label-caps text-label-caps text-secondary">4 excursions</span>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm divide-y divide-surface-container-high overflow-hidden">
+<!-- Item 1 -->
+<div class="p-4 flex items-center justify-between hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex flex-col min-w-0 pr-2">
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="font-label-caps text-[13px] text-primary font-semibold">7 Oct</span>
+<span class="text-outline text-xs">·</span>
+<span class="font-body-lg text-body-lg font-medium text-on-surface truncate">Mama Rose</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary truncate">garden behind the house</span>
+</div>
+<div class="flex items-center gap-2 shrink-0">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-label-caps bg-secondary-container text-on-secondary-container">
+            5 plants
+          </span>
+<span class="material-symbols-outlined text-secondary text-[20px] group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="p-4 flex items-center justify-between hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex flex-col min-w-0 pr-2">
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="font-label-caps text-[13px] text-primary font-semibold">5 Oct</span>
+<span class="text-outline text-xs">·</span>
+<span class="font-body-lg text-body-lg font-medium text-on-surface truncate">Baba Joseph</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary truncate">path to the field</span>
+</div>
+<div class="flex items-center gap-2 shrink-0">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-label-caps bg-secondary-container text-on-secondary-container">
+            3 plants
+          </span>
+<span class="material-symbols-outlined text-secondary text-[20px] group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="p-4 flex items-center justify-between hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex flex-col min-w-0 pr-2">
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="font-label-caps text-[13px] text-primary font-semibold">3 Oct</span>
+<span class="text-outline text-xs">·</span>
+<span class="font-body-lg text-body-lg font-medium text-on-surface truncate">Mama Rose</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary truncate">kitchen garden</span>
+</div>
+<div class="flex items-center gap-2 shrink-0">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-label-caps bg-secondary-container text-on-secondary-container">
+            4 plants
+          </span>
+<span class="material-symbols-outlined text-secondary text-[20px] group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="p-4 flex items-center justify-between hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex flex-col min-w-0 pr-2">
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="font-label-caps text-[13px] text-primary font-semibold">1 Oct</span>
+<span class="text-outline text-xs">·</span>
+<span class="font-body-lg text-body-lg font-medium text-on-surface truncate">Baba Joseph</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary truncate">yard and stone wall</span>
+</div>
+<div class="flex items-center gap-2 shrink-0">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-label-caps bg-secondary-container text-on-secondary-container">
+            2 plants
+          </span>
+<span class="material-symbols-outlined text-secondary text-[20px] group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</div>
+</div>
+<!-- Ledger Summary Footer -->
+<div class="p-3.5 bg-surface-container-low flex items-center justify-between text-secondary">
+<span class="font-citation-italic text-citation-italic text-on-surface-variant">14 specimens across 4 excursions</span>
+<button class="inline-flex items-center gap-1 font-label-caps text-[11px] text-tertiary hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">print</span>
+<span>Print ledger sheet</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 4. "Pressed During Walks" Specimen Registry -->
+<section class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-widest">Specimen Registry</span>
+<h2 class="font-headline-md text-headline-md text-tertiary">Pressed during walks</h2>
+</div>
+<a class="font-label-caps text-label-caps text-primary hover:underline flex items-center gap-0.5" href="#">
+        Folio view <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+</a>
+</div>
+<!-- 2-column compact grid of pressed botanical specimens -->
+<div class="grid grid-cols-2 gap-3">
+<!-- Specimen 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-2.5 flex flex-col gap-2 shadow-sm">
+<div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover mix-blend-multiply" data-alt="A delicate pressed dried botanical herbarium specimen of Salvia rosmarinus rosemary with tiny slender dried leaves and woody stem mounted cleanly on textured cream cotton archival paper in warm natural morning studio light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg_YSVifw6P5gOnEPIzDKnsYWMjScHSDMWTi8rHn_iskGbgBHV8mma5F_Kzl6eXoDloyjOgazlUZhT5KxZRQvfDOwKklHKi__dcIR1cgPZCXkI5P6LrGQaGUwES97euNtR6rMO6Why-3Zx6OUB3i3uQ18aPysb_PoW2sAF1uAU6cCbGSrBdE-ZS_kd0EzBY_SUVeTvdU3If4PvBE_iTGDiudeS7D36K4HauSrFHzY"/>
+<span class="absolute bottom-1.5 left-1.5 bg-surface/90 text-on-surface text-[10px] font-label-caps px-1.5 py-0.5 rounded shadow-sm">
+            #W-04
+          </span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-md text-[15px] leading-tight text-on-surface italic font-serif truncate">Salvia rosmarinus</span>
+<span class="font-citation-italic text-citation-italic text-secondary truncate">7 Oct · Mama Rose</span>
+</div>
+</div>
+<!-- Specimen 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-2.5 flex flex-col gap-2 shadow-sm">
+<div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover mix-blend-multiply" data-alt="Herbarium botanical pressed plant of Urtica dioica stinging nettle showing finely pressed serrated leaves, veined stem, dried earthy olive tones arranged artistically on rough ivory handmade botanical parchment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAO27kFV1M-r4D2mLWNKg6azxuAmLRg0jE6dhdK4tiEqBASpaT0tlA2OsGnCImFL6tbMU4w-9kprIdIZvbwt3xMU9uklbquJ-RDESyosrzh0t8M9-h_uuqzwDLazh82escVAorcrN3_z-kZpkhvnCkoXbDVPj-BuPFb0kv0Vjk6bR0LRc1Dk0LXOnTiWPE7gJK43xrVhSzu9eyi8mq9sXMePpTbVs6RF9XpkFwe2wI"/>
+<span class="absolute bottom-1.5 left-1.5 bg-surface/90 text-on-surface text-[10px] font-label-caps px-1.5 py-0.5 rounded shadow-sm">
+            #W-03
+          </span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-md text-[15px] leading-tight text-on-surface italic font-serif truncate">Urtica dioica</span>
+<span class="font-citation-italic text-citation-italic text-secondary truncate">5 Oct · Baba Joseph</span>
+</div>
+</div>
+<!-- Specimen 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-2.5 flex flex-col gap-2 shadow-sm">
+<div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover mix-blend-multiply" data-alt="Botanical archival pressed dandelion Taraxacum officinale with dried taproot and deeply toothed leaves mounted carefully with linen paper strips on heavy textured cream vellum background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASwcAExymnpaDM6kPkfeDdygmarZSgzG-YkshK6qiBOM3hplKTKTgxfEjTCsl4_0Fz_XbnleV-HVIfbg0tpZmfgYndtFmiAyRTnOCejpOUwuopPmqME9Vqw8H_5P6FkeOjB1jxHDyYmawJlSSeXdALXrJIhmBPcS-DIXDadXMgSQzHwiRtODWWUauojAre73IxWu6xmwlzSkP6-nihqkmR6T4Tflpu-rlC9fkcL1s"/>
+<span class="absolute bottom-1.5 left-1.5 bg-surface/90 text-on-surface text-[10px] font-label-caps px-1.5 py-0.5 rounded shadow-sm">
+            #W-02
+          </span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-md text-[15px] leading-tight text-on-surface italic font-serif truncate">Taraxacum officinale</span>
+<span class="font-citation-italic text-citation-italic text-secondary truncate">3 Oct · Mama Rose</span>
+</div>
+</div>
+<!-- Specimen 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-2.5 flex flex-col gap-2 shadow-sm">
+<div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover mix-blend-multiply" data-alt="Pressed dried specimen of Mentha spicata spearmint with delicate crinkled fragrant dried leaves and thin fibrous roots pressed flat between archival blotting sheets in natural warm ambient light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtU-Gcfp2w9j_1_EkE7-0L22T1dOKOutQHp0GVM3bo4jYCLVFXfv4PdkZ8R-mTTbxSASx_lHHcjJm4cTJjVxkN3NYH59rPPVp473VSLPqcuylbhH-RwBA5cmVbHBHRLffGSHnohiDz9ApUX_wh4ro4Ui34lo0y4obsR-k1vJdOLkIM1sqBJvjhgxbJSJxpDlnAceuADBs6gHRooAbasG3sL-Fv2ht2TbjQ3n8okaE"/>
+<span class="absolute bottom-1.5 left-1.5 bg-surface/90 text-on-surface text-[10px] font-label-caps px-1.5 py-0.5 rounded shadow-sm">
+            #W-01
+          </span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-md text-[15px] leading-tight text-on-surface italic font-serif truncate">Mentha spicata</span>
+<span class="font-citation-italic text-citation-italic text-secondary truncate">1 Oct · Baba Joseph</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Archival State Reference (Zero-State Collapsible Preview) -->
+<section class="bg-surface-container-low rounded-xl p-4 shadow-sm flex flex-col gap-3">
+<div class="flex items-center justify-between text-secondary">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-tertiary">history_edu</span>
+<span class="font-label-caps text-label-caps tracking-wider uppercase text-on-surface-variant">Archival Ledger Reference</span>
+</div>
+<span class="font-label-caps text-[11px] text-secondary">Draft sheet</span>
+</div>
+<div class="bg-surface-container-lowest rounded-lg p-4 flex flex-col items-center text-center gap-2.5 shadow-sm">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[26px]">hiking</span>
+</div>
+<div class="flex flex-col gap-1 max-w-[280px]">
+<h3 class="font-headline-md text-headline-md text-on-surface leading-snug">
+          No walks yet. Go for a walk with someone, then come back.
+        </h3>
+<p class="font-body-sm text-body-sm text-secondary">
+          When you return, write down who you walked with and what you learned.
+        </p>
+</div>
+<button class="h-10 px-4 mt-1 bg-surface-container text-tertiary font-label-caps text-label-caps rounded-lg hover:bg-surface-container-high transition-colors" type="button">
+        Record first walk
+      </button>
+<p class="font-citation-italic text-citation-italic text-outline mt-1">
+        Specimens may be added afterward with sketches, local names, and uses.
+      </p>
+</div>
+</section>
+<!-- 6. Grounded Archival Footer Quote -->
+<footer class="pt-space-sm pb-space-lg flex flex-col items-center justify-center text-center">
+<div class="w-8 h-0.5 bg-surface-container-high rounded-full mb-3"></div>
+<p class="font-citation-italic text-citation-italic text-secondary italic max-w-[260px]">
+      “Use this before and after your walk, not during it.”
+    </p>
+</footer>
+</div>
+<script>
+  // Simple interaction for the Save Walk micro-interaction
+  document.addEventListener('DOMContentLoaded', () => {
+    const saveButton = document.querySelector('button[type="button"]');
+    if (saveButton) {
+      saveButton.addEventListener('click', () => {
+        const originalContent = saveButton.innerHTML;
+        saveButton.innerHTML = `
+          <span class="material-symbols-outlined text-[20px] animate-spin">progress_activity</span>
+          <span>Registering walk...</span>
+        `;
+        saveButton.classList.add('opacity-90');
+
+        setTimeout(() => {
+          saveButton.innerHTML = `
+            <span class="material-symbols-outlined text-[20px]">done_all</span>
+            <span>Walk Registered</span>
+          `;
+          saveButton.classList.remove('opacity-90');
+          saveButton.classList.replace('bg-primary-container', 'bg-tertiary');
+
+          setTimeout(() => {
+            saveButton.innerHTML = originalContent;
+            saveButton.classList.replace('bg-tertiary', 'bg-primary-container');
+          }, 2400);
+        }, 600);
+      });
+    }
+  });
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/95 backdrop-blur-xl shadow-[0_-1px_6px_rgba(36,64,46,0.06)]" data-active-classes="text-primary font-bold"><div class="h-16 max-w-[1120px] mx-auto flex items-center justify-around px-space-sm"><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 text-secondary transition-colors duration-150" data-path="herbarium" href="#"><span class="material-symbols-outlined text-[22px]">menu_book</span><span class="font-label-caps text-label-caps tracking-normal">Herbarium</span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 text-secondary transition-colors duration-150" data-path="walks" href="#"><span class="material-symbols-outlined text-[22px]">hiking</span><span class="font-label-caps text-label-caps tracking-normal">Walks</span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 text-secondary transition-colors duration-150" data-path="people" href="#"><span class="material-symbols-outlined text-[22px]">diversity_1</span><span class="font-label-caps text-label-caps tracking-normal">People</span></a></div></nav></body></html>

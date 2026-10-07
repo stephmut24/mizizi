@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><title>Mizizi</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-secondary-fixed": "#042111", "tertiary-container": "#407e4f", "primary-fixed": "#ffdbce", "on-secondary": "#ffffff", "on-surface": "#1d1c13", "on-primary-fixed": "#370d00", "surface-container-highest": "#e8e2d4", "tertiary-fixed-dim": "#94d69f", "surface": "#fff9eb", "on-primary-container": "#fff6f3", "primary-fixed-dim": "#ffb59a", "on-primary-fixed-variant": "#7d2d07", "outline": "#89726a", "outline-variant": "#dcc1b7", "surface-variant": "#e8e2d4", "surface-container-lowest": "#ffffff", "secondary": "#486551", "surface-dim": "dfdacc", "surface-bright": "#fff9eb", "surface-tint": "#9c431e", "error": "#ba1a1a", "inverse-surface": "#333027", "secondary-fixed-dim": "#aeceb6", "secondary-container": "#caebd1", "on-primary": "#ffffff", "tertiary-fixed": "#aff2b9", "secondary-fixed": "#caebd1", "on-tertiary-fixed": "#00210b", "primary-container": "#b5562f", "on-error-container": "#93000a", "on-tertiary-container": "#e1ffe2", "on-error": "#ffffff", "inverse-on-surface": "#f6f0e2", "on-surface-variant": "#56423c", "background": "#fff9eb", "on-background": "#1d1c13", "on-secondary-fixed-variant": "#314d3a", "on-tertiary-fixed-variant": "#0f5228", "tertiary": "#266538", "surface-container-high": "#eee8da", "primary": "#953f19", "surface-container-low": "#f9f3e5", "on-secondary-container": "#4e6b57", "on-tertiary": "#ffffff", "inverse-primary": "#ffb59a", "error-container": "#ffdad6", "surface-container": "#f3eddf" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xl": "2rem", "space-md": "1rem", "margin": "1.5rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "space-lg": "1.5rem", "gutter": "1.5rem" }, "fontFamily": { "label-caps": ["Inter"], "citation-italic": ["EB Garamond"], "headline-xl-mobile": ["EB Garamond"], "headline-xl": ["EB Garamond"], "headline-md": ["EB Garamond"], "body-sm": ["Inter"], "body-lg": ["Inter"], "headline-lg": ["EB Garamond"] }, "fontSize": { "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600" }], "citation-italic": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-xl-mobile": ["26px", { "lineHeight": "34px", "fontWeight": "700" }], "headline-xl": ["32px", { "lineHeight": "40px", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "700" }], "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg": ["22px", { "lineHeight": "30px", "fontWeight": "700" }] } } } };</script><style>@layer base { html, body { width: 100%; margin: 0; padding: 0; background-color: #fff9eb; } body { overscroll-behavior-y: none; -webkit-tap-highlight-color: transparent; } .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); } .pt-safe { padding-top: env(safe-area-inset-top, 0px); } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-surface text-on-surface font-body-lg text-body-lg min-h-full flex flex-col antialiased selection:bg-primary-fixed selection:text-on-primary-fixed"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_2px_rgba(36,64,46,0.06)] pt-safe"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-tertiary text-[22px] select-none">potted_plant</span><span class="font-headline-lg text-headline-lg font-bold tracking-tight text-tertiary select-none">Mizizi</span></div><div class="flex items-center justify-center"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-36 px-margin bg-surface"><div class="flex flex-col w-full max-w-[1120px] mx-auto gap-space-lg">
+<!-- Top Navigation Ledger & Folio Indicator -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<div class="flex items-center justify-between">
+<a class="inline-flex items-center gap-1.5 text-secondary hover:text-primary transition-colors py-1 group" href="#">
+<span class="material-symbols-outlined text-[18px] transition-transform group-hover:-translate-x-0.5">arrow_back</span>
+<span class="font-label-caps text-label-caps tracking-wider uppercase">Back to Herbarium</span>
+</a>
+<span class="font-label-caps text-label-caps text-on-surface-variant/70 tracking-widest text-right">
+        VOL. II
+      </span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant/60">
+<span class="font-label-caps text-label-caps tracking-widest uppercase">
+        FOLIO № 001 · SPECIMEN SHEET
+      </span>
+<span class="font-citation-italic text-citation-italic text-on-surface-variant/70">
+        Archival Record
+      </span>
+</div>
+</div>
+<!-- Specimen Identity Header -->
+<header class="flex flex-col gap-space-sm">
+<div class="flex flex-wrap items-baseline justify-between gap-2">
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface font-bold tracking-tight">
+        Mchicha
+      </h1>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container">
+<span class="material-symbols-outlined text-[14px]">eco</span>
+<span class="font-label-caps text-label-caps font-medium">Shareable</span>
+</div>
+</div>
+<p class="font-citation-italic text-headline-md italic text-on-surface-variant -mt-1">
+      amaranth greens · Amaranthus blitum
+    </p>
+<!-- Quick Action Bar -->
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+<button class="flex items-center justify-center gap-2 h-12 px-4 rounded-lg bg-surface-container-high text-secondary hover:bg-surface-container-highest transition-colors active:scale-[0.99]" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-secondary">Edit Notes</span>
+</button>
+<button class="flex items-center justify-center gap-2 h-12 px-4 rounded-lg bg-surface-container-high text-secondary hover:bg-surface-container-highest transition-colors active:scale-[0.99]" type="button">
+<span class="material-symbols-outlined text-[18px]">print</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-secondary">Print Card</span>
+</button>
+</div>
+</header>
+<!-- Botanical Specimen Plate Card -->
+<section class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden p-space-md gap-space-md">
+<div class="relative w-full rounded-lg bg-surface-container-low overflow-hidden aspect-[4/5] flex items-center justify-center">
+<img class="w-full h-full object-cover mix-blend-multiply opacity-95 transition-transform duration-700 hover:scale-105" data-alt="An authentic, delicate pressed botanical herbarium specimen of Amaranthus blitum (mchicha). Dried deep sage-green veined leaves, slender dried rootlet system, and reddish-brown seed tassels flattened against aged linen parchment paper with archival herbarium adhesive strips and faint botanical penciled notes." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChSvjlcuveEj_eSyK7rLgjFEJYXcU7olWURBL_hdkIJkwffjRLO2GU4Govv1nMB7l94fXnp9cm4Z3e2knmz7U1r37q_WBHbpfPpezgXjinOemhzvR3EBYh6O59kg0VvfFYAcmZQIsO3tLRfRwsie7qXCESFxI9rE_sftduX5-Vs1tP4gvFkLRgiL45XTxhYgN_mCWjrOc-n8M5zVCwohps0qACqq9S99ytIxSKHKI"/>
+<!-- Plate numbering stamp -->
+<div class="absolute top-3 right-3 px-2 py-0.5 rounded bg-surface-container-lowest/85 text-on-surface-variant font-label-caps text-label-caps tracking-widest backdrop-blur-sm">
+        PL. I
+      </div>
+<!-- Field Collection Wax Seal Accent -->
+<div class="absolute bottom-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container/90 text-on-surface-variant backdrop-blur-sm">
+<span class="material-symbols-outlined text-[14px] text-tertiary">adaptive_audio_mic_off</span>
+<span class="font-label-caps text-label-caps text-tertiary">Verified Leaf</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant pt-1 px-1">
+<p class="font-citation-italic text-citation-italic italic text-secondary">
+        Plate I — Garden specimen pressed 3 Oct
+      </p>
+<span class="font-label-caps text-label-caps tracking-widest text-on-surface-variant/50">
+        4°03'S 39°40'E
+      </span>
+</div>
+</section>
+<!-- Elder Recollections & Archival Field Entries -->
+<article class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm p-space-md gap-space-lg">
+<div class="flex items-center gap-2 pb-2">
+<span class="material-symbols-outlined text-tertiary text-[20px]">local_florist</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Elder Recollections</h2>
+</div>
+<!-- Recognition Entry -->
+<div class="flex flex-col gap-1.5">
+<h3 class="font-label-caps text-label-caps uppercase tracking-wider text-secondary">
+        How to Recognize It
+      </h3>
+<p class="font-body-lg text-body-lg text-on-surface leading-relaxed">
+        Soft, bright green leaves that grow rapidly after seasonal rains. Reddish stems when mature, small clustered seed heads.
+      </p>
+</div>
+<!-- Habitat Entry -->
+<div class="flex flex-col gap-1.5">
+<h3 class="font-label-caps text-label-caps uppercase tracking-wider text-secondary">
+        Where It Grows
+      </h3>
+<p class="font-body-lg text-body-lg text-on-surface leading-relaxed">
+        Near the kitchen wall, after the rain. Prefers rich disturbed soil near rainwater runoffs.
+      </p>
+</div>
+<!-- Elder Uses & Direct Quotation -->
+<div class="flex flex-col gap-2">
+<h3 class="font-label-caps text-label-caps uppercase tracking-wider text-secondary">
+        What They Told Me About Its Uses
+      </h3>
+<p class="font-body-lg text-body-lg text-on-surface leading-relaxed">
+        Eaten as a green vegetable, cooked with groundnut sauce. Nourishing for convalescents and children.
+      </p>
+<!-- Tactile Quote Inset -->
+<div class="flex items-start gap-3 p-space-md rounded-lg bg-surface-container-low text-on-surface mt-1">
+<span class="material-symbols-outlined text-primary text-[20px] select-none shrink-0">format_quote</span>
+<div class="flex flex-col gap-1">
+<p class="font-citation-italic text-body-lg italic text-on-surface">
+            “We cook them with groundnut sauce and serve while the steam is still high.”
+          </p>
+<span class="font-label-caps text-label-caps text-on-surface-variant/70">
+            Field Recording Note
+          </span>
+</div>
+</div>
+</div>
+<!-- Preparation -->
+<div class="flex flex-col gap-1.5">
+<h3 class="font-label-caps text-label-caps uppercase tracking-wider text-secondary">
+        Preparation, As Told
+      </h3>
+<p class="font-body-lg text-body-lg text-on-surface leading-relaxed">
+        Pick the leaves young before flowering. Steam gently or saute with onions, tomatoes, and crushed peanuts until tender.
+      </p>
+</div>
+<!-- Warnings / Null State -->
+<div class="flex flex-col gap-1.5">
+<h3 class="font-label-caps text-label-caps uppercase tracking-wider text-secondary">
+        Warnings, As Told
+      </h3>
+<div class="flex items-center gap-2 p-2.5 rounded-lg bg-surface-container">
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">info</span>
+<p class="font-citation-italic text-body-sm italic text-on-surface-variant">
+          Nothing recorded yet. Ask during the late summer walk.
+        </p>
+</div>
+</div>
+<!-- Oral Lineage / Story -->
+<div class="flex flex-col gap-1.5">
+<h3 class="font-label-caps text-label-caps uppercase tracking-wider text-secondary">
+        A Story or Saying
+      </h3>
+<p class="font-body-lg text-body-lg text-on-surface leading-relaxed">
+        She learned it from her mother during the dry harvest years in Kipungani.
+      </p>
+</div>
+<!-- Specimen Ledger Footer Strip -->
+<div class="flex flex-col gap-1 pt-space-md mt-space-xs bg-surface-container-low rounded-lg p-space-md">
+<div class="flex items-center justify-between text-on-surface">
+<div class="flex items-center gap-1.5 min-w-0">
+<span class="material-symbols-outlined text-[16px] text-tertiary shrink-0">person_pin</span>
+<span class="font-body-sm text-body-sm font-medium truncate">Told by Mama Rose</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant tracking-wider shrink-0">
+          P. 14 / BK 1
+        </span>
+</div>
+<p class="font-citation-italic text-citation-italic italic text-on-surface-variant pl-6">
+        3 Oct · Recorded in the garden behind the house
+      </p>
+</div>
+</article>
+<!-- Questions for Next Time Card (Interactive Checklist) -->
+<section class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm p-space-md gap-space-md">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-md text-headline-md text-on-surface">Questions for next time</h2>
+<span class="material-symbols-outlined text-secondary text-[20px]">help_outline</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Prompt cards to bring on your next botanical walk.
+      </p>
+</div>
+<div class="flex flex-col gap-2 pt-1" id="questions-checklist">
+<!-- Checklist Item 1 -->
+<label class="flex items-start gap-3 p-3 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer select-none">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-5 h-5 mt-0.5 rounded flex items-center justify-center bg-surface-container-lowest text-surface-container-lowest peer-checked:bg-secondary peer-checked:text-on-secondary transition-colors shrink-0">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface peer-checked:line-through peer-checked:text-on-surface-variant/60 leading-snug">
+          How do you recognize it when it is not in season?
+        </span>
+</label>
+<!-- Checklist Item 2 -->
+<label class="flex items-start gap-3 p-3 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer select-none">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-5 h-5 mt-0.5 rounded flex items-center justify-center bg-surface-container-lowest text-surface-container-lowest peer-checked:bg-secondary peer-checked:text-on-secondary transition-colors shrink-0">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface peer-checked:line-through peer-checked:text-on-surface-variant/60 leading-snug">
+          Who taught you about it?
+        </span>
+</label>
+<!-- Checklist Item 3 -->
+<label class="flex items-start gap-3 p-3 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer select-none">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-5 h-5 mt-0.5 rounded flex items-center justify-center bg-surface-container-lowest text-surface-container-lowest peer-checked:bg-secondary peer-checked:text-on-secondary transition-colors shrink-0">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface peer-checked:line-through peer-checked:text-on-surface-variant/60 leading-snug">
+          Is there a saying about it?
+        </span>
+</label>
+</div>
+<!-- Suggestion Action -->
+<button class="inline-flex items-center gap-1.5 self-start pt-1 text-secondary hover:text-primary transition-colors py-2 group" type="button">
+<span class="material-symbols-outlined text-[18px] transition-transform group-hover:scale-110 text-primary">add_circle</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-primary">Suggest more questions</span>
+</button>
+</section>
+<!-- Print & Archive Station Card -->
+<section class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm p-space-md gap-space-md">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">inventory_2</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Print &amp; Archive</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Generate archival cards formatted for field folders or physical gifting.
+      </p>
+</div>
+<div class="flex flex-col gap-2.5 pt-1">
+<!-- Primary Action -->
+<button class="w-full h-12 flex items-center justify-center gap-2 rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-colors active:scale-[0.99] shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">badge</span>
+<span class="font-label-caps text-label-caps font-semibold uppercase tracking-wider text-on-primary">Print Specimen Card</span>
+</button>
+<!-- Secondary Action -->
+<button class="w-full h-12 flex items-center justify-center gap-2 rounded-lg bg-surface-container-high text-secondary hover:bg-surface-container-highest transition-colors active:scale-[0.99]" type="button">
+<span class="material-symbols-outlined text-[18px]">description</span>
+<span class="font-label-caps text-label-caps font-semibold uppercase tracking-wider text-secondary">Print Next-Walk Sheet</span>
+</button>
+</div>
+</section>
+<!-- Elder Knowledge Disclaimer Banner -->
+<aside class="flex items-start gap-3 p-space-md rounded-xl bg-surface-container text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary text-[22px] shrink-0 mt-0.5">menu_book</span>
+<div class="flex flex-col gap-0.5">
+<p class="font-body-sm text-body-sm font-medium text-on-surface">
+        Oral Lineage Notice
+      </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Traditional knowledge shared by Mama Rose. Field observations are personal folklore records and not medical advice.
+      </p>
+</div>
+</aside>
+<!-- Grounding Footer -->
+<footer class="flex flex-col items-center justify-center pt-space-md pb-space-lg text-center">
+<p class="font-citation-italic text-citation-italic italic text-on-surface-variant/75">
+      “Use this before and after your walk, not during it.”
+    </p>
+<div class="w-8 h-0.5 bg-outline-variant/40 rounded-full mt-3"></div>
+</footer>
+</div>
+<script>
+  // Simple micro-interaction for checklist feedback
+  document.querySelectorAll('#questions-checklist input[type="checkbox"]').forEach(checkbox => {
+    checkbox.addEventListener('change', (e) => {
+      const parent = e.target.closest('label');
+      if (e.target.checked) {
+        parent.classList.add('opacity-75');
+      } else {
+        parent.classList.remove('opacity-75');
+      }
+    });
+  });
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/95 backdrop-blur-xl shadow-[0_-1px_6px_rgba(36,64,46,0.06)]" data-active-classes="text-primary font-bold"><div class="h-16 max-w-[1120px] mx-auto flex items-center justify-around px-space-sm"><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 text-secondary transition-colors duration-150" data-path="herbarium" href="#"><span class="material-symbols-outlined text-[22px]">menu_book</span><span class="font-label-caps text-label-caps tracking-normal">Herbarium</span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 text-secondary transition-colors duration-150" data-path="walks" href="#"><span class="material-symbols-outlined text-[22px]">hiking</span><span class="font-label-caps text-label-caps tracking-normal">Walks</span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-0.5 text-secondary transition-colors duration-150" data-path="people" href="#"><span class="material-symbols-outlined text-[22px]">diversity_1</span><span class="font-label-caps text-label-caps tracking-normal">People</span></a></div></nav></body></html>

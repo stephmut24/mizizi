@@ -25,14 +25,15 @@ The JSON Schema is generated directly from Zod with `z.toJSONSchema`, including
 is limited to 1000 characters, quotes to 4000, and each topic to 12 items. Missing
 topics are an allowlist of field keys, not arbitrary model-written claims.
 
-`AssistantModule` exports the organizer but adds no HTTP endpoint. Loading the
-module does not contact Ollama. The CLI creates an assistant-only Nest context,
+`AssistantModule` exports the organizer. Prompt 04 adds a write-free HTTP endpoint
+and browser review; see [review flow](review-flow.md). Loading the module does not
+contact Ollama. The CLI creates an assistant-only Nest context,
 not the full application: it never opens SQLite or creates a photos directory.
 The build copies `prompts/organize-notes.md` beside the compiled organizer.
 
 ## Retry and availability contract
 
-`LlmClient.chatJson(system, user, jsonSchema)` makes **one transport attempt** and
+`LlmClient.chatJson(system, user, jsonSchema, signal?)` makes **one transport attempt** and
 returns untrusted parsed JSON. `OrganizerService` owns a single retry budget for
 both malformed JSON and schema mismatch: at most two HTTP calls overall, never
 two independent retry loops. The retry adds a brief correction instruction.
@@ -76,9 +77,12 @@ quote attached to an unrelated non-banned claim can pass. The prompt forbids suc
 behavior, but human review remains mandatory. Traditional knowledge shared by
 the elder. Not medical advice.
 
-No proposal is automatically saved. Prompt 04 must enforce consent at the request
-boundary and let the person review, edit and explicitly confirm each suggestion.
-The frontend's current development fixture remains independent of this service.
+No proposal is automatically saved. Prompt 04 lets the person review, edit and
+apply suggestions before saving. The organize request contains only raw notes,
+not an elder ID; consent is enforced by the existing plant endpoints at save time.
+The UI also requires a consenting person before organizing. An optional abort
+signal propagates browser cancellation through the organizer to Ollama; cancelled
+calls are not retried and late results are ignored.
 
 ## Real-model verification
 

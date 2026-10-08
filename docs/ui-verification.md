@@ -1,5 +1,9 @@
 # Notebook UI verification
 
+This records the Prompt 02/02b milestone. Prompt 04 replaces the fictional review
+fixture with a working organizer; its current checks and dependency-free Chrome
+script are documented in [review flow verification](review-flow.md).
+
 ## Run the application
 
 Use Node 22.21.1. From the repository root, run `npm run install:all`,
@@ -51,7 +55,8 @@ CHROME_PATH=/absolute/path/to/chrome \
   npm --prefix frontend run test:ui
 ```
 
-The script starts and stops its own production server and development preview.
+The script starts and stops its own production server. The obsolete development
+fixture check was removed in Prompt 04 and replaced by `test:review`.
 It allocates a temporary database and photos directory, never the real `data/`.
 Screenshots and a JSON report remain in the printed temporary directory for
 inspection. Browser installation is optional; `npm test` does not require it.

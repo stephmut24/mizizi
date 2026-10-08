@@ -13,6 +13,7 @@ describe('Configuration', () => {
       OLLAMA_URL: 'http://localhost:11434',
       OLLAMA_MODEL: 'gemma3:4b',
       OLLAMA_TIMEOUT_S: 180,
+      ORGANIZER_MAX_NOTES_CHARS: 4000,
       PORT: 3000,
     });
     expect(
@@ -30,6 +31,9 @@ describe('Configuration', () => {
     { OLLAMA_TIMEOUT_S: '1.5' },
     { OLLAMA_MODEL: '' },
     { OLLAMA_URL: 'invalid' },
+    { ORGANIZER_MAX_NOTES_CHARS: '0' },
+    { ORGANIZER_MAX_NOTES_CHARS: '-1' },
+    { ORGANIZER_MAX_NOTES_CHARS: '1.5' },
   ])('rejects invalid settings: %j', (values) => {
     expect(() => validateEnvironment(values)).toThrow(
       /Invalid environment configuration/,

@@ -13,8 +13,9 @@ import { EldersService } from '../src/elders/elders.service';
 import { WalksService } from '../src/walks/walks.service';
 import { PlantsService } from '../src/plants/plants.service';
 import { FollowupsService } from '../src/followups/followups.service';
+import { LLM_CLIENT, LlmClient } from '../src/assistant/llm-client';
 
-export async function createTestApp() {
+export async function createTestApp(client?: LlmClient) {
   const directory = mkdtempSync(join(tmpdir(), 'mizizi-test-'));
   const config = new ConfigService(
     validateEnvironment({
@@ -22,10 +23,11 @@ export async function createTestApp() {
       PHOTOS_DIR: join(directory, 'photos'),
     }),
   );
-  const module = await Test.createTestingModule({ imports: [AppModule] })
+  const builder = Test.createTestingModule({ imports: [AppModule] })
     .overrideProvider(ConfigService)
-    .useValue(config)
-    .compile();
+    .useValue(config);
+  if (client) builder.overrideProvider(LLM_CLIENT).useValue(client);
+  const module = await builder.compile();
   const app = module.createNestApplication({ logger: false });
   configureApp(app);
   await app.init();

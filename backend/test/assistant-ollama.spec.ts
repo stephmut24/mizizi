@@ -111,6 +111,47 @@ describe('Ollama client with mocked fetch (never needs Ollama)', () => {
     expect(jest.getTimerCount()).toBe(0);
   });
 
+  it('propagates caller cancellation distinctly from an Ollama timeout', async () => {
+    jest.useFakeTimers();
+    fetchMock.mockImplementation(
+      (_url, options) =>
+        new Promise((_resolve, reject) => {
+          options?.signal?.addEventListener(
+            'abort',
+            () => reject(new DOMException('Aborted', 'AbortError')),
+            { once: true },
+          );
+        }),
+    );
+    const controller = new AbortController();
+    const result = expect(
+      client.chatJson(
+        'Rules',
+        'Notes',
+        organizedCardJsonSchema,
+        controller.signal,
+      ),
+    ).rejects.toMatchObject({ name: 'AbortError' });
+    controller.abort();
+    await result;
+    expect(fetchMock.mock.calls[0][1]?.signal?.aborted).toBe(true);
+    expect(jest.getTimerCount()).toBe(0);
+  });
+
+  it('does not contact Ollama for an already cancelled request', async () => {
+    const controller = new AbortController();
+    controller.abort();
+    await expect(
+      client.chatJson(
+        'Rules',
+        'Notes',
+        organizedCardJsonSchema,
+        controller.signal,
+      ),
+    ).rejects.toMatchObject({ name: 'AbortError' });
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
   it.each(['{broken', '```json\n{}\n```', ''])(
     'reports malformed content for the organizer to retry: %s',
     async (content) => {

@@ -18,8 +18,12 @@ export class OllamaClient implements LlmClient {
     system: string,
     user: string,
     jsonSchema: Record<string, unknown>,
+    signal?: AbortSignal,
   ): Promise<unknown> {
+    signal?.throwIfAborted();
     const controller = new AbortController();
+    const cancel = () => controller.abort();
+    signal?.addEventListener('abort', cancel, { once: true });
     const timeout = this.config.getOrThrow<number>('OLLAMA_TIMEOUT_S');
     const model = this.config.getOrThrow<string>('OLLAMA_MODEL');
     const url = this.config
@@ -57,11 +61,13 @@ export class OllamaClient implements LlmClient {
       }
       // Parse here so malformed envelopes and message JSON follow the same error path.
       const envelope: unknown = JSON.parse(await response.text());
+      signal?.throwIfAborted();
       const parsed = responseSchema.safeParse(envelope);
       if (!parsed.success || parsed.data.done_reason === 'length')
         throw new AssistantBadOutputError();
       return JSON.parse(parsed.data.message.content) as unknown;
     } catch (error) {
+      signal?.throwIfAborted();
       if (controller.signal.aborted) {
         throw new AssistantUnavailableError(
           `Ollama took longer than ${timeout} seconds. Please try shorter notes or write the card by hand.`,
@@ -78,6 +84,7 @@ export class OllamaClient implements LlmClient {
       );
     } finally {
       clearTimeout(timer);
+      signal?.removeEventListener('abort', cancel);
     }
   }
 }

@@ -162,4 +162,16 @@ describe('Organizer using a fake LlmClient', () => {
       await module.close();
     }
   });
+
+  it('ignores late model output after cancellation and does not retry', async () => {
+    const controller = new AbortController();
+    chatJson.mockImplementation(async () => {
+      controller.abort();
+      return sampleCard();
+    });
+    await expect(
+      service.organizeNotes(sampleNotes, controller.signal),
+    ).rejects.toMatchObject({ name: 'AbortError' });
+    expect(chatJson).toHaveBeenCalledTimes(1);
+  });
 });

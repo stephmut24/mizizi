@@ -7,5 +7,6 @@ export interface LlmClient {
     system: string,
     user: string,
     jsonSchema: Record<string, unknown>,
+    signal?: AbortSignal,
   ): Promise<unknown>;
 }

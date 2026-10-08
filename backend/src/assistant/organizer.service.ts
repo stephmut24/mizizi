@@ -25,7 +25,11 @@ export class OrganizerService {
     private readonly config: ConfigService,
   ) {}
 
-  async organizeNotes(rawNotes: string): Promise<OrganizerResult> {
+  async organizeNotes(
+    rawNotes: string,
+    signal?: AbortSignal,
+  ): Promise<OrganizerResult> {
+    signal?.throwIfAborted();
     const limit = this.config.getOrThrow<number>('ORGANIZER_MAX_NOTES_CHARS');
     if (typeof rawNotes !== 'string' || !rawNotes.trim())
       throw new BadRequestException('Please write some notes first.');
@@ -46,12 +50,15 @@ export class OrganizerService {
           system,
           user,
           organizedCardJsonSchema,
+          signal,
         );
+        signal?.throwIfAborted();
         const parsed = organizedCardSchema.safeParse(output);
         if (!parsed.success) throw new AssistantBadOutputError();
         const result = applyGuard(parsed.data, rawNotes);
         return { ...result, missing: [...result.card.missing] };
       } catch (error) {
+        signal?.throwIfAborted();
         if (error instanceof AssistantUnavailableError) throw error;
         if (!(error instanceof AssistantBadOutputError)) throw error;
         if (attempt === 1) throw new AssistantBadOutputError();

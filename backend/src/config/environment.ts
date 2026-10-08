@@ -10,6 +10,7 @@ const environmentSchema = z.object({
   OLLAMA_URL: z.url().default('http://localhost:11434'),
   OLLAMA_MODEL: z.string().trim().min(1).default('gemma3:4b'),
   OLLAMA_TIMEOUT_S: z.coerce.number().int().positive().default(180),
+  ORGANIZER_MAX_NOTES_CHARS: z.coerce.number().int().positive().default(4000),
   PORT: z.coerce.number().int().min(1).max(65535).default(3000),
 });
 

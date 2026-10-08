@@ -6,9 +6,10 @@ Traditional knowledge shared by the elder. Not medical advice.
 
 This milestone contains a NestJS/SQLite API and a responsive React notebook:
 People, Walks and Herbarium. Record consent, log walks, write plant cards by hand,
-and search, edit or delete them. No model, account, API key or internet connection
-is needed after installation. AI organization, photo uploads, printing and exports
-are future milestones; the review panel is an isolated development preview only.
+and search, edit or delete them. Manual writing needs no model, account, API key
+or internet after installation. The backend also has a local Ollama organizer
+with verified source quotes, available through a CLI. Connecting it to the review
+UI, photo uploads, printing and exports are future milestones.
 
 ## Requirements and installation
 
@@ -115,13 +116,42 @@ against `backend/`, independently of the shell's working directory.
 | `OLLAMA_URL`       | `http://localhost:11434` |
 | `OLLAMA_MODEL`     | `gemma3:4b`              |
 | `OLLAMA_TIMEOUT_S` | `180`                    |
+| `ORGANIZER_MAX_NOTES_CHARS` | `4000`          |
 | `PORT`             | `3000`                   |
 
-Ollama settings are reserved configuration only: no AI calls exist yet. If you
-change `PORT`, adjust the development proxy in `frontend/vite.config.ts` too.
+Ollama is only called when the organizer is explicitly invoked; the notebook can
+still start and be used manually when Ollama is stopped. If you change `PORT`,
+adjust the development proxy in `frontend/vite.config.ts` too.
 Startup validates the settings, creates missing data directories and tables,
 enables SQLite WAL and foreign keys, and closes the database on shutdown.
 The initial schema is idempotent; future schema changes will need migrations.
+
+## Try the local organizer (Prompt 03)
+
+Start Ollama and confirm the exact installed model name:
+
+```sh
+ollama list
+npm run try:organize -- docs/organizer-notes.txt
+npm run try:organize -- docs/organizer-notes.txt --demo-invalid-quote
+```
+
+The default model is `gemma3:4b`. If it is not installed, download it beforehand
+with `ollama pull gemma3:4b` (requires internet and disk space). Subsequent calls
+stay local. `notes.txt` paths are relative to where you invoked npm.
+
+The CLI prints the proposed card, evidence quotes, kept/removed counts, rejected
+items with reasons, missing topics and elapsed time. The demo flag adds one
+clearly labelled fake item **after** the real model response and shows the guard
+rejecting it; it is not a claim that Ollama generated that item.
+Neither command opens SQLite or saves notes/cards. No HTTP organizer endpoint or
+frontend AI connection is added in this milestone.
+
+The timeout is 180 seconds per call. Only invalid JSON/schema output gets one
+retry (at most two calls); connection errors, timeouts and missing models return
+a friendly message with exit code 1 and no uncaught stack trace. Manual writing
+remains available. See [organizer design, limits and verification](docs/organizer.md)
+and [fictional multilingual examples](docs/organizer-examples.json).
 
 ## Try the API from Swagger
 
@@ -211,6 +241,10 @@ use the real `data/` database or a running model.
 - `backend/src/elders/`, `walks/`, `plants/`, `followups/`: DTOs, controllers,
   services and Nest modules. Services own business rules.
 - `backend/test/`: isolated SQLite and HTTP tests.
+- `backend/src/assistant/`: typed Ollama boundary, Zod schema, evidence guard,
+  short prompt and organizer. No database dependency.
+- `backend/scripts/try-organize.ts`: real-model CLI. The build copies the prompt
+  into `dist/assistant/prompts/` for compiled use too.
 - `frontend/src/api/`: typed API requests and shared notebook state.
 - `frontend/src/pages/`: People, Walks, Herbarium, plant detail and plant form.
 - `frontend/src/components/`: navigation, fields, notices, delete dialog and the
@@ -227,5 +261,5 @@ stack. No ORM or cloud service is used. A scoped npm override upgrades Swagger's
 requires the corrected version.
 
 `react-router-dom` is the only new app dependency for the notebook milestone.
-The backend source was not changed. The UI uses local CSS, system fonts and inline
-SVG; nothing from the design exports' CDNs or remote image servers is loaded.
+The UI uses local CSS, system fonts and inline SVG; nothing from the design
+exports' CDNs or remote image servers is loaded.

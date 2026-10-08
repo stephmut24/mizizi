@@ -14,6 +14,7 @@ import { WalksModule } from './walks/walks.module';
 import { PlantsModule } from './plants/plants.module';
 import { FollowupsModule } from './followups/followups.module';
 import { HealthController } from './health.controller';
+import { AssistantModule } from './assistant/assistant.module';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { HealthController } from './health.controller';
     WalksModule,
     PlantsModule,
     FollowupsModule,
+    AssistantModule,
   ],
   controllers: [HealthController],
 })

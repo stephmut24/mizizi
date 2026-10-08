@@ -1,0 +1,96 @@
+[
+  {
+    "id": "english-appearance",
+    "notes": "We call it Kijani. Its leaves are soft and green.",
+    "expected": {
+      "localName": { "text": "Kijani", "quote": "We call it Kijani." },
+      "appearance": [
+        {
+          "text": "Soft and green leaves",
+          "quote": "Its leaves are soft and green."
+        }
+      ]
+    }
+  },
+  {
+    "id": "french-habitat",
+    "notes": "On l'appelle Mchicha. Elle pousse près du mur de la cuisine.",
+    "expected": {
+      "localName": { "text": "Mchicha", "quote": "On l'appelle Mchicha." },
+      "habitat": [
+        {
+          "text": "Près du mur de la cuisine",
+          "quote": "Elle pousse près du mur de la cuisine."
+        }
+      ]
+    }
+  },
+  {
+    "id": "mixed-names",
+    "notes": "Mama says: tunaita Mnavu. Elle dit aussi « garden leaf ». The stem is green.",
+    "expected": {
+      "localName": { "text": "Mnavu", "quote": "tunaita Mnavu." },
+      "otherNames": [
+        { "text": "garden leaf", "quote": "Elle dit aussi « garden leaf »." }
+      ],
+      "appearance": [{ "text": "Green stem", "quote": "The stem is green." }]
+    }
+  },
+  {
+    "id": "swahili-story",
+    "notes": "Bibi alisema: niliipanda na mama yangu. Majani yake ni laini.",
+    "expected": {
+      "story": [
+        {
+          "text": "Niliipanda na mama yangu",
+          "quote": "niliipanda na mama yangu."
+        }
+      ],
+      "appearance": [
+        { "text": "Majani yake ni laini", "quote": "Majani yake ni laini." }
+      ]
+    }
+  },
+  {
+    "id": "english-craft",
+    "notes": "She said they use the leaves for weaving baskets. First they dry the leaves in the shade.",
+    "expected": {
+      "uses": [
+        {
+          "text": "Leaves for weaving baskets",
+          "quote": "they use the leaves for weaving baskets."
+        }
+      ],
+      "preparation": [
+        {
+          "text": "Dry the leaves in the shade",
+          "quote": "First they dry the leaves in the shade."
+        }
+      ]
+    }
+  },
+  {
+    "id": "french-warning",
+    "notes": "Il a dit : les tiges ont des épines. Je ne connais pas son nom.",
+    "expected": {
+      "warnings": [
+        {
+          "text": "Les tiges ont des épines",
+          "quote": "les tiges ont des épines."
+        }
+      ]
+    }
+  },
+  {
+    "id": "uncertainty",
+    "notes": "She said it might grow near the fence, but she was not sure. We did not discuss its uses.",
+    "expected": {
+      "habitat": [
+        {
+          "text": "It might grow near the fence, but she was not sure",
+          "quote": "it might grow near the fence, but she was not sure."
+        }
+      ]
+    }
+  }
+]

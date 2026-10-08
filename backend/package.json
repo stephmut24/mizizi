@@ -7,10 +7,11 @@
   },
   "scripts": {
     "dev": "ts-node src/main.ts",
-    "build": "tsc -p tsconfig.build.json",
+    "build": "tsc -p tsconfig.build.json && node scripts/copy-assistant-prompts.mjs",
     "start": "node dist/main.js",
-    "lint": "eslint src test && prettier --check src test *.json *.cjs",
-    "test": "jest --runInBand"
+    "lint": "eslint src test scripts && prettier --check src test scripts *.json *.cjs",
+    "test": "jest --runInBand",
+    "try:organize": "ts-node scripts/try-organize.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.1.0",

@@ -5,17 +5,23 @@ import type {
   PlantInput,
   Walk,
   WalkInput,
+  OrganizerProposal,
 } from './types';
 
 export const connectionMessage =
   'The server is not reachable. Is the computer on and on the same Wi-Fi?';
 
-async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
+async function request<T>(
+  path: string,
+  options: RequestInit = {},
+  organizer = false,
+): Promise<T> {
   const controller = new AbortController();
   const cancel = () => controller.abort();
   options.signal?.addEventListener('abort', cancel, { once: true });
   if (options.signal?.aborted) cancel();
-  const timer = window.setTimeout(cancel, 15000);
+  // The backend owns the configurable AI deadline (including its one retry).
+  const timer = organizer ? undefined : window.setTimeout(cancel, 15000);
   try {
     const response = await fetch(`/api${path}`, {
       ...options,
@@ -34,7 +40,7 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
         data &&
         typeof data === 'object' &&
         'message' in data &&
-        response.status < 500
+        (response.status < 500 || (organizer && response.status === 503))
       ) {
         if (typeof data.message === 'string') message = data.message;
         if (Array.isArray(data.message))
@@ -63,6 +69,12 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
 }
 
 export const api = {
+  organize: (rawNotes: string, signal: AbortSignal) =>
+    request<OrganizerProposal>(
+      '/assistant/organize',
+      { method: 'POST', body: JSON.stringify({ rawNotes }), signal },
+      true,
+    ),
   elders: (signal?: AbortSignal) => request<Elder[]>('/elders', { signal }),
   walks: (signal?: AbortSignal) => request<Walk[]>('/walks', { signal }),
   plants: (signal?: AbortSignal) => request<Plant[]>('/plants', { signal }),

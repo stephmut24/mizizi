@@ -52,7 +52,6 @@ const report = {
   checks: [],
 };
 let browser;
-let vite;
 try {
   let ready = false;
   for (let attempt = 0; attempt < 100; attempt++) {
@@ -397,54 +396,8 @@ try {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ consent_given: true }),
   });
-  process.env.VITE_REVIEW_PREVIEW = 'true';
-  const { createServer } =
-    await import('../node_modules/vite/dist/node/index.js');
-  vite = await createServer({
-    root: resolve(root, 'frontend'),
-    server: {
-      host: '127.0.0.1',
-      port: 0,
-      strictPort: true,
-      proxy: { '/api': origin },
-    },
-  });
-  await vite.listen();
-  const preview = await context.newPage();
-  const previewPort = vite.httpServer.address().port;
-  await preview.goto(`http://127.0.0.1:${previewPort}/#/herbarium/new`);
-  await preview
-    .getByText('Development preview · fictional sample · no AI is running', {
-      exact: true,
-    })
-    .waitFor();
-  await preview.getByLabel('Keep sample names', { exact: true }).uncheck();
-  await preview
-    .getByLabel('Sample appearance', { exact: true })
-    .fill('Edited sample only');
-  await preview
-    .getByRole('button', { name: 'Use these in my card — preview' })
-    .click();
-  await preview
-    .getByText('Preview only. No sample content was copied or saved.', {
-      exact: true,
-    })
-    .waitFor();
-  assert.equal(
-    await preview.getByLabel('Local name', { exact: true }).inputValue(),
-    '',
-  );
-  assert.equal((await (await fetch(`${origin}/api/plants`)).json()).length, 3);
-  for (const width of [390, 1280]) {
-    await preview.setViewportSize({ width, height: 900 });
-    await preview.screenshot({
-      path: resolve(artifacts, `review-preview-${width}.png`),
-      fullPage: true,
-    });
-  }
-  report.checks.push(
-    'Development-only review: editable/checkable fixture, cannot copy or save sample data',
-  );
+  // The real review flow supersedes the old development fixture.
+  // Run test:review for dependency-free Chrome coverage of that flow.
   console.log(JSON.stringify(report, null, 2));
 } finally {
   writeFileSync(
@@ -452,7 +405,6 @@ try {
     JSON.stringify(report, null, 2),
   );
   await browser?.close();
-  await vite?.close();
   if (server.exitCode === null) process.kill(-server.pid, 'SIGTERM');
   console.log(`Temporary database, screenshots and report: ${artifacts}`);
 }

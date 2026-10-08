@@ -42,3 +42,24 @@ export type PlantInput = Omit<
   Plant,
   'id' | 'created_at' | 'updated_at' | 'photo_path'
 >;
+export type Evidence = { text: string; quote: string };
+export type OrganizedTopic =
+  | 'localName'
+  | 'otherNames'
+  | 'appearance'
+  | 'habitat'
+  | 'uses'
+  | 'preparation'
+  | 'warnings'
+  | 'story';
+export type OrganizedCard = {
+  localName: Evidence | null;
+  missing: OrganizedTopic[];
+} & Record<Exclude<OrganizedTopic, 'localName'>, Evidence[]>;
+export interface OrganizerProposal {
+  card: OrganizedCard;
+  kept: number;
+  removed: number;
+  missing: OrganizedTopic[];
+  rejected: { field: OrganizedTopic; item: Evidence; reason: string }[];
+}

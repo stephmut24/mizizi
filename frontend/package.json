@@ -10,7 +10,8 @@
     "dev": "vite --host 0.0.0.0",
     "build": "tsc --noEmit && vite build",
     "lint": "eslint src vite.config.ts && prettier --check src scripts *.json *.js *.ts index.html",
-    "test:ui": "node scripts/verify-ui.mjs"
+    "test:ui": "node scripts/verify-ui.mjs",
+    "test:review": "node scripts/verify-review.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

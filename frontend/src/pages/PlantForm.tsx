@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState, type FormEvent } from 'react';
+import { useRef, useState, type FormEvent } from 'react';
 import {
   Link,
   useNavigate,
@@ -19,12 +19,8 @@ import {
 } from '../components/NotebookUi';
 import { useSubmission } from '../components/useSubmission';
 import { focusFirstError, formatDate, splitLines } from '../utils';
-
-// The fixture and its controls are removed from production builds.
-const ReviewPreview =
-  import.meta.env.DEV && import.meta.env.VITE_REVIEW_PREVIEW === 'true'
-    ? lazy(() => import('../components/ReviewPreview'))
-    : null;
+import { NotesOrganizer } from '../components/NotesOrganizer';
+import { quoteRange } from '../components/review';
 
 const observations = [
   ['appearance', 'How to recognize it'],
@@ -57,6 +53,7 @@ function PlantEditor({ plant }: { plant?: Plant }) {
   const navigate = useNavigate();
   const { busy, error, submit } = useSubmission();
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const notesElement = useRef<HTMLTextAreaElement>(null);
   const [form, setForm] = useState(() => ({
     elder_id: String(plant?.elder_id ?? params.get('elderId') ?? ''),
     walk_id: String(plant?.walk_id ?? params.get('walkId') ?? ''),
@@ -289,6 +286,7 @@ function PlantEditor({ plant }: { plant?: Plant }) {
                 >
                   <textarea
                     id="raw_notes"
+                    ref={notesElement}
                     rows={7}
                     value={form.raw_notes}
                     onChange={(event) =>
@@ -298,15 +296,29 @@ function PlantEditor({ plant }: { plant?: Plant }) {
                   />
                 </Field>
               </section>
-              {ReviewPreview && (
-                <Suspense
-                  fallback={
-                    <p role="status">Loading the development preview…</p>
+              <NotesOrganizer
+                key={JSON.stringify([form.raw_notes, form.elder_id])}
+                notes={form.raw_notes}
+                disabled={busy || !person?.consent_given}
+                onApply={(fields) => {
+                  setForm((current) => ({ ...current, ...fields }));
+                  setErrors((current) => ({
+                    ...current,
+                    ...(fields.local_name ? { local_name: '' } : {}),
+                  }));
+                }}
+                onQuote={(quote) => {
+                  const range = quoteRange(quote, form.raw_notes);
+                  if (range && notesElement.current) {
+                    notesElement.current.focus();
+                    notesElement.current.setSelectionRange(...range);
+                    notesElement.current.scrollIntoView({
+                      block: 'center',
+                      behavior: 'smooth',
+                    });
                   }
-                >
-                  <ReviewPreview />
-                </Suspense>
-              )}
+                }}
+              />
               <section className="panel form-stack">
                 <div>
                   <h2>Write the card by hand</h2>

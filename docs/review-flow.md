@@ -109,9 +109,38 @@ use `NODE_ENV=production npm test`. This leaves all application checks enabled.
   contention is a possible contributor, not a proven diagnosis. No user service
   or unrelated model was stopped by these verification scripts.
 
-The complete **real-Gemma browser workflow remains unverified** on this run.
-Repeat the opt-in command after Ollama is responsive. The normal timeout remains
-180 seconds; no persistent setting was raised to hide the failed trials.
+The complete real-Gemma browser workflow was unverified on 8 October. The normal
+timeout remained 180 seconds; no persistent setting was raised to hide those
+failed trials. The successful follow-up below supersedes that verification gap.
+
+## Follow-up verification, 10 October 2026
+
+- Node 22.21.1; `NODE_ENV=production npm test` passed all **152 tests** in eight
+  suites. `npm run lint` and `npm run build` passed. One trailing space in
+  `DatabaseService` was removed to satisfy Prettier; no database behavior changed.
+- `ollama list` confirmed the same `gemma3:4b` model. No model was initially
+  loaded. The Mac was heavily loaded during the first checks; the user freed
+  resources before inference. Tests, lint and compilation finished before the
+  real-model browser trial began. No unrelated service or model was stopped.
+- `node frontend/scripts/verify-real-review.mjs` completed successfully with the
+  normal **180-second** per-attempt limit. The proposal appeared after **117.19 s**:
+  **3 items kept, 0 removed** from the fictional Kijani notes. This is one observed
+  run including model/HTTP/UI latency, not a general performance guarantee.
+- The real-browser trial deselected one item, edited another, highlighted its
+  original quote and applied the reviewed fields. It verified **zero plant writes
+  before Save**, then one successful save and the resulting herbarium card.
+- The trial used a temporary database and a 390px viewport. It recorded **zero
+  external page requests** and **zero uncaught browser exceptions**.
+- A fresh `npm --prefix frontend run test:review` also passed after the real-model
+  trial. It checked 390/1280px layouts, 48px controls, cancellation reaching the
+  fake model, a deliberately late response, unchanged fields before applying,
+  unchanged tables before saving, consent revocation and 400/422/503 fallbacks.
+  Stopping only the fake model server produced the friendly fallback in the UI.
+  It recorded zero external page requests and zero uncaught browser exceptions.
+
+The complete real-Gemma review-and-save workflow is now verified. Manual writing
+remains available if future inference calls are slow or unavailable. The default
+timeout, prompt, evidence guard and dependencies were not changed for this result.
 
 ## Scope and limitations
 

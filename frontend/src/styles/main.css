@@ -1039,3 +1039,36 @@ fieldset {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+.followup-section {
+  margin-top: 32px;
+}
+.question-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.question-list li {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding-block: 16px;
+  border-bottom: 1px solid currentColor;
+}
+.answered-label {
+  display: block;
+  font-style: italic;
+  margin-top: 4px;
+}
+.question-proposals {
+  border-top: 1px solid currentColor;
+  padding-top: 24px;
+}
+.question-proposals .check-row {
+  min-height: 48px;
+}
+@media (min-width: 768px) {
+  .question-list li {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+}

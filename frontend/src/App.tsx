@@ -7,10 +7,30 @@ import { PlantDetail } from './pages/PlantDetail';
 import { PlantForm } from './pages/PlantForm';
 import { Walks } from './pages/Walks';
 import { People } from './pages/People';
+import { PrintPage } from './pages/PrintPage';
 
 export function App() {
   return (
     <HashRouter>
+      <Routes>
+        <Route path="/print/card/:id" element={<PrintPage kind="card" />} />
+        <Route
+          path="/print/booklet/:id"
+          element={<PrintPage kind="booklet" />}
+        />
+        <Route
+          path="/print/nextwalk/:id"
+          element={<PrintPage kind="nextwalk" />}
+        />
+        <Route path="*" element={<Notebook />} />
+      </Routes>
+    </HashRouter>
+  );
+}
+
+function Notebook() {
+  return (
+    <div className="notebook-screen">
       <NotebookProvider>
         <Shell>
           <DataGate>
@@ -38,6 +58,6 @@ export function App() {
           </DataGate>
         </Shell>
       </NotebookProvider>
-    </HashRouter>
+    </div>
   );
 }

@@ -11,7 +11,8 @@
     "build": "tsc --noEmit && vite build",
     "lint": "eslint src vite.config.ts && prettier --check src scripts *.json *.js *.ts index.html",
     "test:ui": "node scripts/verify-ui.mjs",
-    "test:review": "node scripts/verify-review.mjs"
+    "test:review": "node scripts/verify-review.mjs",
+    "test:printing": "node scripts/verify-printing.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

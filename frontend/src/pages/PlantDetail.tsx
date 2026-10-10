@@ -9,6 +9,7 @@ import {
   VisibilityBadge,
 } from '../components/NotebookUi';
 import { DeletePlantDialog } from '../components/DeletePlantDialog';
+import { FollowupQuestions } from '../components/FollowupQuestions';
 import { formatDate } from '../utils';
 
 export function PlantDetail() {
@@ -151,6 +152,40 @@ export function PlantDetail() {
           <div className="reminder">
             <SafetyNotice name={name} />
           </div>
+          <section className="panel stack">
+            <h2>Take the notebook outside</h2>
+            {elder?.consent_given ? (
+              <>
+                {plant.visibility === 'shareable' ? (
+                  <Link
+                    className="button button-secondary"
+                    to={`/print/card/${plant.id}`}
+                  >
+                    Print card
+                  </Link>
+                ) : (
+                  <p>
+                    This card is private and cannot be printed. Only its saved
+                    questions can appear on your personal next-walk sheet.
+                  </p>
+                )}
+                <Link
+                  className="button button-secondary"
+                  to={`/print/booklet/${plant.elder_id}`}
+                >
+                  Print booklet
+                </Link>
+                <Link
+                  className="button button-secondary"
+                  to={`/print/nextwalk/${plant.elder_id}`}
+                >
+                  Print next-walk sheet
+                </Link>
+              </>
+            ) : (
+              <p>Consent must be recorded before printing this notebook.</p>
+            )}
+          </section>
           {!elder?.consent_given && (
             <p className="reminder">
               Consent is not currently recorded for this person. You can review
@@ -160,6 +195,11 @@ export function PlantDetail() {
           )}
         </aside>
       </div>
+      <FollowupQuestions
+        key={`${plant.id}-${elder?.consent_given}`}
+        plantId={plant.id}
+        consent={Boolean(elder?.consent_given)}
+      />
       {deleting && (
         <DeletePlantDialog plant={plant} onClose={() => setDeleting(false)} />
       )}

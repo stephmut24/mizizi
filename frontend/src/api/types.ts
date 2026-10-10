@@ -63,3 +63,48 @@ export interface OrganizerProposal {
   missing: OrganizedTopic[];
   rejected: { field: OrganizedTopic; item: Evidence; reason: string }[];
 }
+
+export interface Followup {
+  id: number;
+  plant_id: number;
+  question: string;
+  answered: boolean;
+  created_at: string;
+}
+
+export interface QuestionProposal {
+  questions: string[];
+  missing: string[];
+  source: 'model' | 'templates';
+}
+
+export type PrintElder = Pick<Elder, 'id' | 'display_name'>;
+export type PrintPlant = Pick<
+  Plant,
+  | 'id'
+  | 'local_name'
+  | 'other_names'
+  | 'appearance'
+  | 'habitat'
+  | 'uses'
+  | 'preparation'
+  | 'warnings'
+  | 'story'
+> & { walk_date: string | null };
+export interface PrintedCard {
+  elder: PrintElder;
+  plant: PrintPlant;
+}
+export interface PrintedBooklet {
+  elder: PrintElder;
+  plants: PrintPlant[];
+  skippedPrivateCount: number;
+}
+export interface NextWalkSheet {
+  elder: PrintElder;
+  groups: {
+    plant_id: number;
+    label: string;
+    questions: Pick<Followup, 'id' | 'question'>[];
+  }[];
+}

@@ -6,6 +6,11 @@ import type {
   Walk,
   WalkInput,
   OrganizerProposal,
+  Followup,
+  QuestionProposal,
+  PrintedCard,
+  PrintedBooklet,
+  NextWalkSheet,
 } from './types';
 
 export const connectionMessage =
@@ -69,6 +74,36 @@ async function request<T>(
 }
 
 export const api = {
+  printCard: (id: number, signal: AbortSignal) =>
+    request<PrintedCard>(`/print/plants/${id}`, { signal, cache: 'no-store' }),
+  printBooklet: (id: number, signal: AbortSignal) =>
+    request<PrintedBooklet>(`/print/booklet/${id}`, {
+      signal,
+      cache: 'no-store',
+    }),
+  printNextWalk: (id: number, signal: AbortSignal) =>
+    request<NextWalkSheet>(`/print/nextwalk/${id}`, {
+      signal,
+      cache: 'no-store',
+    }),
+  followups: (plantId: number, signal: AbortSignal) =>
+    request<Followup[]>(`/followups?plantId=${plantId}`, { signal }),
+  suggestQuestions: (plantId: number, signal: AbortSignal) =>
+    request<QuestionProposal>(
+      `/plants/${plantId}/followups/suggest`,
+      { method: 'POST', signal },
+      true,
+    ),
+  saveQuestions: (plantId: number, questions: string[]) =>
+    request<Followup[]>(`/plants/${plantId}/followups`, {
+      method: 'POST',
+      body: JSON.stringify({ questions }),
+    }),
+  answerQuestion: (id: number, answered: boolean) =>
+    request<Followup>(`/followups/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify({ answered }),
+    }),
   organize: (rawNotes: string, signal: AbortSignal) =>
     request<OrganizerProposal>(
       '/assistant/organize',

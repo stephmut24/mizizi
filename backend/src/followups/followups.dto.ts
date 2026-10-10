@@ -5,7 +5,19 @@ import {
   PickType,
 } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import { IsBoolean, IsInt, IsString, Matches, Max, Min } from 'class-validator';
+import {
+  ArrayMaxSize,
+  ArrayMinSize,
+  ArrayUnique,
+  IsArray,
+  IsBoolean,
+  IsInt,
+  IsString,
+  Matches,
+  Max,
+  MaxLength,
+  Min,
+} from 'class-validator';
 import { OptionalField } from '../common/validation';
 
 export class CreateFollowupDto {
@@ -39,4 +51,15 @@ export class FollowupQueryDto {
   @Min(1)
   @Max(Number.MAX_SAFE_INTEGER)
   plantId?: number;
+}
+
+export class SaveQuestionsDto {
+  @ApiProperty({ type: [String], minItems: 1, maxItems: 4 })
+  @IsArray()
+  @ArrayMinSize(1)
+  @ArrayMaxSize(4)
+  @ArrayUnique()
+  @IsString({ each: true })
+  @MaxLength(140, { each: true })
+  questions!: string[];
 }

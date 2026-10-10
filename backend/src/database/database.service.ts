@@ -42,6 +42,10 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy {
     return this.connection.prepare<SqlValue[]>(sql).run(...parameters);
   }
 
+  transaction<T>(work: () => T): T {
+    return this.connection.transaction(work)();
+  }
+
   onModuleDestroy() {
     if (this.connection?.open) this.connection.close();
   }

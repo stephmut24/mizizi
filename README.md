@@ -8,8 +8,10 @@ This milestone contains a NestJS/SQLite API and a responsive React notebook:
 People, Walks and Herbarium. Record consent, log walks, write plant cards by hand,
 and search, edit or delete them. Manual writing needs no model, account, API key
 or internet after installation. The backend also has a local Ollama organizer
-with verified source quotes, available through a CLI. Connecting it to the review
-UI, photo uploads, printing and exports are future milestones.
+with verified source quotes, available through a CLI and an explicit review UI.
+AI proposals can be edited and applied, but only Save stores a card. Shareable
+cards and booklets can be printed or saved as PDF. Reviewed follow-up questions
+make a personal sheet for the next walk. Photo uploads remain a future milestone.
 
 ## Requirements and installation
 
@@ -57,7 +59,7 @@ npm start
 Open `http://localhost:3000`, or `http://<your-computer-LAN-address>:3000` on the
 phone. Nest listens on `0.0.0.0`. This is a single-household app with no login;
 use a trusted network, not a public deployment. The normal notebook API includes
-private plants; `visibility` controls future publishing/print/export behavior,
+private plants; `visibility` controls the print/export endpoints,
 not authentication.
 
 The backend starts even when `frontend/dist` does not exist. In that case `/`
@@ -89,19 +91,44 @@ from another browser. Unsaved form contents are not persisted across navigation.
 The local server must stay running; offline means no internet is needed, not that
 the phone stores an independent copy when disconnected from the computer.
 
-### Development-only review layout
+### Organize notes, review, then save (Prompt 04)
 
-With the backend running, enable the fictional review fixture:
+With Ollama running and `gemma3:4b` installed (`ollama list`), open **New plant**
+or **Edit plant**, choose a consenting person and write raw notes. Press
+**Organize my notes with local AI**. The model runs on this computer; allow a
+minute or more. **Cancel** aborts the request without changing the card.
 
-```sh
-VITE_REVIEW_PREVIEW=true npm run dev:frontend
-```
+Review each editable line and its immutable **From your notes** quote. Click a
+quote to select it in the original notes; uncheck any unwanted lines. **Use these
+in my card** copies selected lines into the matching form fields, replacing those
+fields only. Unselected/empty groups leave existing manual fields unchanged.
+Neither organizing nor applying saves anything: **Save plant** / **Save changes**
+is the only persistence step. Changing raw notes or the selected person discards
+the current review and cancels pending AI work. Leaving the form cancels it too.
 
-Add a consenting test person, then open **New plant**. Below the raw notes is a
-clearly labelled preview with editable lines, checkboxes, source quotes, a summary
-and missing-information reminders. Its controls never modify or save a real card.
-The fixture is excluded from production builds, even when the flag is set. No AI
-endpoint is called. The connection point is marked `TODO connect in prompt 04`.
+An unavailable model or unusable answer shows a friendly message; manual writing
+and saving still work. The old development fixture and its flag are removed.
+See [review flow and verification](docs/review-flow.md) for limits and tests.
+
+### Paper herbarium and questions (Prompt 05)
+
+Open a plant and find **Questions for next time**. Suggest questions, review the
+checkboxes, then **Save selected questions**. Mark questions answered after your
+conversation, or **Ask again** to reopen them. If Ollama is unavailable or gives
+no usable questions, the app offers notebook templates instead. Suggestions
+never save themselves. Consent is required for question changes too.
+
+Use **Print card**, **Print booklet**, or **Print next-walk sheet** in the plant
+detail. The print preview has a **Print / Save as PDF** button. Select A5 paper
+and turn off browser headers and footers. Each card starts on a new page; long
+cards continue rather than losing text. Booklet contents refer to stable folio
+numbers, not page numbers, because pagination depends on the browser.
+
+Private cards are refused by the server and omitted from booklets (count only).
+The personal next-walk sheet is the approved exception: unanswered questions
+from private plants appear under anonymous folio numbers, without plant fields.
+Question text itself is personal: review it before handing the sheet to anyone.
+See [printing rules, verification and limitations](docs/printing.md).
 
 ## Configuration
 
@@ -119,7 +146,7 @@ against `backend/`, independently of the shell's working directory.
 | `ORGANIZER_MAX_NOTES_CHARS` | `4000`          |
 | `PORT`             | `3000`                   |
 
-Ollama is only called when the organizer is explicitly invoked; the notebook can
+Ollama is only called when organizing notes or suggesting questions explicitly; the notebook can
 still start and be used manually when Ollama is stopped. If you change `PORT`,
 adjust the development proxy in `frontend/vite.config.ts` too.
 Startup validates the settings, creates missing data directories and tables,
@@ -144,8 +171,8 @@ The CLI prints the proposed card, evidence quotes, kept/removed counts, rejected
 items with reasons, missing topics and elapsed time. The demo flag adds one
 clearly labelled fake item **after** the real model response and shows the guard
 rejecting it; it is not a claim that Ollama generated that item.
-Neither command opens SQLite or saves notes/cards. No HTTP organizer endpoint or
-frontend AI connection is added in this milestone.
+Neither CLI command opens SQLite or saves notes/cards. The browser uses the same
+organizer through `POST /api/assistant/organize`, which also writes nothing.
 
 The timeout is 180 seconds per call. Only invalid JSON/schema output gets one
 retry (at most two calls); connection errors, timeouts and missing models return
@@ -211,7 +238,9 @@ case is ignored. SQLite's default search does not perform full Unicode case
 folding. Follow-ups can be filtered with `?plantId=1`; update `answered` with a
 JSON boolean. Deleting a plant also deletes its follow-ups.
 
-API bodies use `snake_case`, IDs are positive integers, and flags are JSON
+Notebook CRUD bodies use `snake_case`; the assistant endpoint uses `rawNotes` and
+returns the organizer's camelCase card keys (`localName`, `otherNames`).
+IDs are positive integers, and flags are JSON
 booleans (stored as SQLite 0/1). `languages`, `other_names`, `appearance`,
 `habitat`, `uses`, `preparation` and `warnings` are arrays of strings, stored as
 JSON text. `story` and `raw_notes` are strings. Raw notes retain their original
@@ -221,7 +250,11 @@ nonnegative integer or null. `walk_id` and `photo_path` also accept null.
 
 Unknown body fields and unknown plant/follow-up filters return 400; other invalid
 input also returns 400, and missing records return 404. Plant visibility defaults
-to `private`. No export or print endpoints exist in this milestone.
+to `private`. Print routes are `/api/print/plants/:id`,
+`/api/print/booklet/:elderId` and `/api/print/nextwalk/:elderId`. Private card
+requests and printing after consent withdrawal return 403. Suggest with
+`POST /api/plants/:id/followups/suggest`; save reviewed questions with
+`POST /api/plants/:id/followups` and `{ "questions": ["Is there a family story?"] }`.
 
 ## Verification and layout
 
@@ -242,16 +275,22 @@ use the real `data/` database or a running model.
   services and Nest modules. Services own business rules.
 - `backend/test/`: isolated SQLite and HTTP tests.
 - `backend/src/assistant/`: typed Ollama boundary, Zod schema, evidence guard,
-  short prompt and organizer. No database dependency.
+  short prompts, organizer and guarded question suggestions. No database dependency.
+- `backend/src/printing/`: minimal print projections and server-side privacy checks.
 - `backend/scripts/try-organize.ts`: real-model CLI. The build copies the prompt
   into `dist/assistant/prompts/` for compiled use too.
 - `frontend/src/api/`: typed API requests and shared notebook state.
 - `frontend/src/pages/`: People, Walks, Herbarium, plant detail and plant form.
 - `frontend/src/components/`: navigation, fields, notices, delete dialog and the
-  development-only review preview.
+  local AI request controls, evidenced review panel and pure review helpers.
 - `frontend/src/styles/main.css`: Stitch-derived tokens and responsive plain CSS.
+- `frontend/src/styles/print.css`: black-on-white A5 pages and print-only rules.
+- `frontend/scripts/verify-printing.mjs`: question review and native PDF browser
+  checks; run `npm --prefix frontend run test:printing` after building.
 - `frontend/scripts/verify-ui.mjs`: optional isolated browser smoke test; see
   [UI verification](docs/ui-verification.md) for setup, coverage and visual deviations.
+- `frontend/scripts/verify-review.mjs`: dependency-free Chrome review-flow tests
+  with a fake local model; `verify-real-review.mjs` is an opt-in real Gemma trial.
 - `AGENTS.md`: contributor constraints; `plan.md`: the overall project plan.
 
 Nest/React runtime packages, their TypeScript types, Jest's TypeScript adapter,

@@ -4,6 +4,7 @@ import { LLM_CLIENT } from './llm-client';
 import { OllamaClient } from './ollama.client';
 import { OrganizerService } from './organizer.service';
 import { AssistantController } from './assistant.controller';
+import { QuestionsService } from './questions.service';
 
 @Module({
   imports: [ConfigModule],
@@ -11,7 +12,8 @@ import { AssistantController } from './assistant.controller';
   providers: [
     { provide: LLM_CLIENT, useClass: OllamaClient },
     OrganizerService,
+    QuestionsService,
   ],
-  exports: [OrganizerService],
+  exports: [OrganizerService, QuestionsService],
 })
 export class AssistantModule {}
